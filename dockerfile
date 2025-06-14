@@ -11,11 +11,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     git \
     ffmpeg \
+    yt-dlp \  <-- මෙම line එක එකතු කරන්න!
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# yt-dlp python pip භාවිතයෙන් ස්ථාපනය කරන්න.
-RUN pip install yt-dlp
+# (පැරණි RUN pip install yt-dlp line එක ඉවත් කරන ලදී)
 
 # Application code එක සඳහා working directory එකක් සකසන්න.
 WORKDIR /app
