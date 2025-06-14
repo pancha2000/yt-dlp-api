@@ -1,11 +1,22 @@
 {
   "name": "yt-download-api",
   "version": "1.0.0",
+  "description": "A simple API to get direct audio and video download URLs from YouTube using yt-dlp.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "keywords": [
+    "youtube",
+    "download",
+    "api",
+    "yt-dlp",
+    "node.js"
+  ],
+  "author": "pancha2000 cdilrukshi52@gmail.com",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "dotenv": "^16.4.5"
   }
 }
