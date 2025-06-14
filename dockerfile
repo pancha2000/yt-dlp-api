@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     git \
     ffmpeg \
-    python3-venv && \  # `\` පසු comment එකක් තියන්න එපා.
+    python3-venv && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
