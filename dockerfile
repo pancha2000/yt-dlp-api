@@ -10,10 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
     git \
-    ffmpeg && \
-    yt-dlp && \  <-- මෙම line එක එකතු කරන්න!
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    ffmpeg \
+    yt-dlp && \ 
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # (පැරණි RUN pip install yt-dlp line එක ඉවත් කරන ලදී)
 
