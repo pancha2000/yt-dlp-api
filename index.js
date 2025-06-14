@@ -3,6 +3,7 @@ require('dotenv').config(); // Load environment variables from .env file
 const express = require("express");
 const { execFile } = require("child_process"); // Use execFile for security
 const { URL } = require('url'); // For robust URL validation
+// const { createProxyMiddleware } = require('http-proxy-middleware'); // දැනට අවශ්‍ය නැත, yt-dlp ම proxy කරගන්නවා
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -31,16 +32,15 @@ app.get("/audio", (req, res) => {
 
   const args = ["-f", "bestaudio", "--get-url", url];
 
-  // Add proxy arguments if PROXY_URL is set
+  // Add proxy arguments to yt-dlp command if PROXY_URL is set
   if (PROXY_URL) {
     args.unshift("--proxy", PROXY_URL);
-    console.log(`Using proxy: ${PROXY_URL}`); // For debugging
+    console.log(`Using proxy for yt-dlp: ${PROXY_URL}`); // For debugging
   }
 
   execFile("yt-dlp", args, (err, stdout, stderr) => {
     if (err) {
       console.error(`Error fetching audio URL for ${url}: ${stderr}`);
-      // Return a more user-friendly error, but include details for debugging
       // Filter out some common non-fatal warnings from stderr for cleaner error messages
       const cleanStderr = stderr.split('\n').filter(line => !line.startsWith('WARNING:')).join('\n').trim();
       return res.status(500).json({
@@ -74,10 +74,10 @@ app.get("/video", (req, res) => {
 
   const args = ["-f", "bestvideo+bestaudio", "--get-url", url];
 
-  // Add proxy arguments if PROXY_URL is set
+  // Add proxy arguments to yt-dlp command if PROXY_URL is set
   if (PROXY_URL) {
     args.unshift("--proxy", PROXY_URL);
-    console.log(`Using proxy: ${PROXY_URL}`); // For debugging
+    console.log(`Using proxy for yt-dlp: ${PROXY_URL}`); // For debugging
   }
 
   execFile("yt-dlp", args, (err, stdout, stderr) => {
